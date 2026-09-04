@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="dockerhub" value="Docker Hub&#xa;ifiqo/hello-world:latest" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="minikube" value="Minikube Cluster" style="rounded=1;whiteSpace=wrap;html=1;swimlane=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="40" width="600" height="430" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="deployment" value="Deployment&#xa;hello-world&#xa;replicas: 2" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="minikube">
+          <mxGeometry x="170" y="40" width="220" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pod1" value="Pod 1&#xa;Flask :32777" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="minikube">
+          <mxGeometry x="60" y="170" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pod2" value="Pod 2&#xa;Flask :32777" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="minikube">
+          <mxGeometry x="340" y="170" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="service" value="Service&#xa;hello-world-service&#xa;NodePort :30077&#xa;targetPort :32777" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="minikube">
+          <mxGeometry x="190" y="300" width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="browser" value="Web Browser&#xa;Hello, World!" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="300" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="dockerhub" target="deployment">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="minikube" source="deployment" target="pod1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="minikube" source="deployment" target="pod2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="minikube" source="pod1" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="minikube" source="pod2" target="service">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="service" target="browser">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
